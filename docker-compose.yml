@@ -1,0 +1,110 @@
+networks:
+  tech-tracker-network:
+    name: tech-tracker-network
+    driver: bridge
+
+services:
+  # Build a working Brave Search MCP server
+  brave-search-mcp:
+    build:
+      context: ./brave-search-mcp-custom
+    image: local/brave-search-mcp:latest
+    container_name: tech-tracker-brave-search
+    env_file: [ .env ]
+    command: ["python", "run.py", "--transport", "sse", "--host", "0.0.0.0", "--port", "3001"]
+    ports:
+      - "3001:3001"
+    restart: unless-stopped
+    networks: [ tech-tracker-network ]
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:3001/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # github-mcp:
+  #   image: mcp/github-mcp-server:latest
+  #   container_name: tech-tracker-github
+  #   env_file: [ .env ]
+  #   # Runs HTTP server (not stdio) so your app can call it over the network:
+  #   command: ["server", "http", "--host", "0.0.0.0", "--port", "3002", "--read-only"]
+  #   environment:
+  #     # Map either var from your .env into what the server expects
+  #     GITHUB_PERSONAL_ACCESS_TOKEN: ${GITHUB_PERSONAL_ACCESS_TOKEN:-${GITHUB_TOKEN:-}}
+  #   ports:
+  #     - "3002:3002"
+  #   restart: unless-stopped
+  #   networks: [ tech-tracker-network ]
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "curl -fsS http://localhost:3002/health || exit 1"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 3
+  #     start_period: 40s
+
+  # Build a working Hacker News MCP (pins a compatible fastmcp version)
+  hackernews-mcp:
+    build:
+      context: ./hackernews-mcp-custom
+    image: local/hacker-news-mcp:latest
+    container_name: tech-tracker-hackernews
+    env_file: [ .env ]
+    command: ["python", "run.py", "--transport", "sse", "--host", "0.0.0.0", "--port", "3003"]
+    ports:
+      - "3003:3003"
+    restart: unless-stopped
+    networks: [ tech-tracker-network ]
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:3003/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # filesystem-mcp:
+  #   image: mcp/filesystem:latest
+  #   container_name: tech-tracker-filesystem
+  #   env_file: [ .env ]
+  #   volumes:
+  #     - ./data:/data:ro
+  #   # This binary requires the allowed directory as an argument:
+  #   command: ["mcp-filesystem", "--allowed-dir", "/data", "--host", "0.0.0.0", "--port", "3004"]
+  #   ports:
+  #     - "3004:3004"   # optional
+  #   restart: unless-stopped
+  #   networks: [ tech-tracker-network ]
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "curl -fsS http://localhost:3004/health || exit 1"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 3
+  #     start_period: 40s
+
+  tech-tracker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tech-tracker-app
+    env_file: [ .env ]
+    depends_on:
+      hackernews-mcp:  { condition: service_healthy }
+      brave-search-mcp:  { condition: service_healthy }
+    environment:
+      # Override only the MCP URLs for internal Docker DNS names
+      BRAVE_SEARCH_MCP_URL: http://brave-search-mcp:3001
+      GITHUB_MCP_URL: ""  # Disabled - requires proper github-mcp image  
+      HACKER_NEWS_MCP_URL: http://hackernews-mcp:3003
+      FILESYSTEM_MCP_URL: ""  # Disabled - requires proper filesystem image
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    networks: [ tech-tracker-network ]
+    volumes:
+      - ./static:/app/static:ro
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8000/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

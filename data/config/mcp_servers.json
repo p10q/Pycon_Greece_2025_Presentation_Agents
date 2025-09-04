@@ -1,0 +1,140 @@
+{
+  "mcp_servers": [
+    {
+      "name": "brave_search",
+      "url": "http://localhost:3001",
+      "description": "Brave Search MCP Server for web search capabilities",
+      "tools": [
+        {
+          "name": "search",
+          "description": "Search the web using Brave Search API",
+          "parameters": {
+            "query": "string",
+            "count": "integer",
+            "safe_search": "string"
+          }
+        }
+      ],
+      "health_endpoint": "/health",
+      "rate_limits": {
+        "requests_per_minute": 60,
+        "requests_per_hour": 1000
+      }
+    },
+    {
+      "name": "github",
+      "url": "http://localhost:3002",
+      "description": "GitHub MCP Server for repository operations",
+      "tools": [
+        {
+          "name": "search_repositories",
+          "description": "Search GitHub repositories",
+          "parameters": {
+            "query": "string",
+            "sort": "string",
+            "order": "string",
+            "per_page": "integer"
+          }
+        },
+        {
+          "name": "get_repository",
+          "description": "Get detailed repository information",
+          "parameters": {
+            "owner": "string",
+            "repo": "string"
+          }
+        },
+        {
+          "name": "get_repository_stats",
+          "description": "Get repository statistics and metrics",
+          "parameters": {
+            "owner": "string",
+            "repo": "string"
+          }
+        }
+      ],
+      "health_endpoint": "/health",
+      "rate_limits": {
+        "requests_per_minute": 30,
+        "requests_per_hour": 1000
+      }
+    },
+    {
+      "name": "hacker_news",
+      "url": "http://localhost:3003",
+      "description": "Hacker News MCP Server for fetching stories and trends",
+      "tools": [
+        {
+          "name": "get_stories",
+          "description": "Get Hacker News stories by type",
+          "parameters": {
+            "type": "string",
+            "limit": "integer"
+          }
+        },
+        {
+          "name": "get_story",
+          "description": "Get a specific Hacker News story",
+          "parameters": {
+            "story_id": "integer"
+          }
+        },
+        {
+          "name": "search_stories",
+          "description": "Search Hacker News stories",
+          "parameters": {
+            "query": "string",
+            "date_range": "string"
+          }
+        }
+      ],
+      "health_endpoint": "/health",
+      "rate_limits": {
+        "requests_per_minute": 30,
+        "requests_per_hour": 500
+      }
+    },
+    {
+      "name": "filesystem",
+      "url": "http://localhost:3004",
+      "description": "Filesystem MCP Server for secure file operations",
+      "tools": [
+        {
+          "name": "read_file",
+          "description": "Read contents of a file",
+          "parameters": {
+            "path": "string"
+          }
+        },
+        {
+          "name": "list_directory",
+          "description": "List contents of a directory",
+          "parameters": {
+            "path": "string"
+          }
+        },
+        {
+          "name": "file_stats",
+          "description": "Get file statistics",
+          "parameters": {
+            "path": "string"
+          }
+        }
+      ],
+      "health_endpoint": "/health",
+      "security": {
+        "allowed_paths": [
+          "/app/data",
+          "/app/examples"
+        ],
+        "read_only": true
+      }
+    }
+  ],
+  "configuration": {
+    "timeout_seconds": 30,
+    "retry_attempts": 3,
+    "health_check_interval": 60,
+    "logging_level": "INFO"
+  }
+}

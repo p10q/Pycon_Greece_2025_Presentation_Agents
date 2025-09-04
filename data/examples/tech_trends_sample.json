@@ -1,0 +1,62 @@
+{
+  "sample_tech_trends": [
+    {
+      "technology": "FastAPI",
+      "category": "Web Framework",
+      "popularity_score": 95,
+      "growth_rate": "25%",
+      "use_cases": ["API Development", "Microservices", "Real-time Applications"],
+      "github_repositories": [
+        "tiangolo/fastapi",
+        "python-poetry/poetry",
+        "encode/starlette"
+      ],
+      "key_features": [
+        "Automatic API documentation",
+        "Type hints support",
+        "High performance",
+        "Easy async support"
+      ]
+    },
+    {
+      "technology": "Pydantic-AI",
+      "category": "AI Framework",
+      "popularity_score": 88,
+      "growth_rate": "45%",
+      "use_cases": ["AI Agents", "Type-safe AI", "Schema-driven Development"],
+      "github_repositories": [
+        "pydantic/pydantic-ai",
+        "openai/openai-python"
+      ],
+      "key_features": [
+        "Type-safe agents",
+        "Schema validation",
+        "Multi-model support",
+        "Dependency injection"
+      ]
+    },
+    {
+      "technology": "Docker MCP",
+      "category": "DevOps Tool",
+      "popularity_score": 82,
+      "growth_rate": "30%",
+      "use_cases": ["Container Orchestration", "AI Tool Integration", "Microservices"],
+      "github_repositories": [
+        "docker/mcp-toolkit",
+        "modelcontextprotocol/servers"
+      ],
+      "key_features": [
+        "Plug-and-play tools",
+        "Standardized interfaces",
+        "Easy integration",
+        "Scalable architecture"
+      ]
+    }
+  ],
+  "metadata": {
+    "generated_at": "2024-01-15T10:00:00Z",
+    "source": "Tech Trends Analysis",
+    "version": "1.0",
+    "total_technologies": 3
+  }
+}

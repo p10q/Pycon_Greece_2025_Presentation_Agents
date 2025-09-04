@@ -1,0 +1,10 @@
+{
+    "Context": "Tell me the most trendy AI tools currently! like openai, anthropic, etc.",
+    "Tools": [
+        {
+            "Name": "OpenAI",
+            "Description": "OpenAI is a company that provides a range of AI services, including the ChatGPT model. Also search trends in Claude",
+            "URL": "https://openai.com"
+        }
+    ]
+}

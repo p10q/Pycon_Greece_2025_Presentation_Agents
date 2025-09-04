@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "bc711011-ce9f-4471-a94c-6e826dfd348c",
+      "type": "trends",
+      "input": "Python web frameworks 2024",
+      "title": "Trends: Python web frameworks 2024",
+      "timestamp": "2025-08-20T20:53:23.759000",
+      "data": {
+        "query": "Python web frameworks 2024",
+        "trends": [],
+        "total_items": 0,
+        "sources": [
+          "hacker_news"
+        ],
+        "analysis_timestamp": "2024-01-15T10:00:00",
+        "summary": ""
+      }
+    },
+    {
+      "id": "f5430093-166d-4dc8-bbc9-3e06f8bdcc51",
+      "type": "chat",
+      "input": "What is the weather in Athens?",
+      "title": "Chat: What is the weather in Athens?",
+      "timestamp": "2025-08-20T20:53:23.756451",
+      "data": {
+        "response": "Athens is the capital of Greece.",
+        "timestamp": "2024-01-15T10:00:00",
+        "message_type": "general"
+      }
+    },
+    {
+      "id": "dbb3152d-8d3a-4c62-b15a-7e1d8db930c1",
+      "type": "trends",
+      "input": "FastAPI trends",
+      "title": "Trends: FastAPI trends",
+      "timestamp": "2025-08-20T20:53:23.749061",
+      "data": {
+        "query": "FastAPI trends",
+        "trends": [
+          {
+            "title": "FastAPI is trending",
+            "url": "https://example.com",
+            "source": "hacker_news",
+            "score": 100,
+            "timestamp": "2024-01-15T10:00:00",
+            "description": "FastAPI framework gaining popularity",
+            "tags": [
+              "fastapi",
+              "python"
+            ],
+            "metadata": {}
+          }
+        ],
+        "total_items": 1,
+        "sources": [
+          "hacker_news"
+        ],
+        "analysis_timestamp": "2024-01-15T10:00:00",
+        "summary": "FastAPI is trending upward"
+      }
+    },
+    {
+      "id": "c8adf2b9-543b-4833-83c6-89322ce7a5ac",
+      "type": "trends",
+      "input": "Python web frameworks 2024",
+      "title": "Trends: Python web frameworks 2024",
+      "timestamp": "2025-08-20T20:45:36.423639",
+      "data": {
+        "query": "Python web frameworks 2024",
+        "trends": [],
+        "total_items": 0,
+        "sources": [
+          "hacker_news"
+        ],
+        "analysis_timestamp": "2024-01-15T10:00:00",
+        "summary": ""
+      }
+    },
+    {
+      "id": "8b5902ff-1e73-47bd-a2cb-0e7910993b1e",
+      "type": "chat",
+      "input": "What is the weather in Athens?",
+      "title": "Chat: What is the weather in Athens?",
+      "timestamp": "2025-08-20T20:45:36.421043",
+      "data": {
+        "response": "Athens is the capital of Greece.",
+        "timestamp": "2024-01-15T10:00:00",
+        "message_type": "general"
+      }
+    },
+    {
+      "id": "1cc1ae57-e964-49a3-8018-8f83c04cfbad",
+      "type": "trends",
+      "input": "FastAPI trends",
+      "title": "Trends: FastAPI trends",
+      "timestamp": "2025-08-20T20:45:36.414423",
+      "data": {
+        "query": "FastAPI trends",
+        "trends": [
+          {
+            "title": "FastAPI is trending",
+            "url": "https://example.com",
+            "source": "hacker_news",
+            "score": 100,
+            "timestamp": "2024-01-15T10:00:00",
+            "description": "FastAPI framework gaining popularity",
+            "tags": [
+              "fastapi",
+              "python"
+            ],
+            "metadata": {}
+          }
+        ],
+        "total_items": 1,
+        "sources": [
+          "hacker_news"
+        ],
+        "analysis_timestamp": "2024-01-15T10:00:00",
+        "summary": "FastAPI is trending upward"
+      }
+    },
+    {
+      "id": "988d8848-545f-4274-b88b-242c144fae71",
+      "type": "trends",
+      "input": "Python web frameworks 2024",
+      "title": "Trends: Python web frameworks 2024",
+      "timestamp": "2025-08-20T20:32:21.805195",
+      "data": {
+        "query": "Python web frameworks 2024",
+        "trends": [],
+        "total_items": 0,
+        "sources": [
+          "hacker_news"
+        ],
+        "analysis_timestamp": "2024-01-15T10:00:00",
+        "summary": ""
+      }
+    },
+    {
+      "id": "a7a91a1b-6c47-4a87-b2e3-8890e3cec082",
+      "type": "chat",
+      "input": "What is the weather in Athens?",
+      "title": "Chat: What is the weather in Athens?",
+      "timestamp": "2025-08-20T20:32:21.802455",
+      "data": {
+        "response": "Athens is the capital of Greece.",
+        "timestamp": "2024-01-15T10:00:00",
+        "message_type": "general"
+      }
+    },
+    {
+      "id": "f7f70b5f-f21e-4944-b9b4-8287e077943f",
+      "type": "trends",
+      "input": "FastAPI trends",
+      "title": "Trends: FastAPI trends",
+      "timestamp": "2025-08-20T20:32:21.795156",
+      "data": {
+        "query": "FastAPI trends",
+        "trends": [
+          {
+            "title": "FastAPI is trending",
+            "url": "https://example.com",
+            "source": "hacker_news",
+            "score": 100,
+            "timestamp": "2024-01-15T10:00:00",
+            "description": "FastAPI framework gaining popularity",
+            "tags": [
+              "fastapi",
+              "python"
+            ],
+            "metadata": {}
+          }
+        ],
+        "total_items": 1,
+        "sources": [
+          "hacker_news"
+        ],
+        "analysis_timestamp": "2024-01-15T10:00:00",
+        "summary": "FastAPI is trending upward"
+      }
+    },
+    {
+      "id": "aed97c4e-578f-4cd3-9e63-fcedf8b5c8d0",
+      "type": "trends",
+      "input": "Python web frameworks 2024",
+      "title": "Trends: Python web frameworks 2024",
+      "timestamp": "2025-08-20T20:24:48.696145",
+      "data": {
+        "query": "Python web frameworks 2024",
+        "trends": [],
+        "total_items": 0,
+        "sources": [
+          "hacker_news"
+        ],
+        "analysis_timestamp": "2024-01-15T10:00:00",
+        "summary": ""
+      }
+    }
+  ]
+}

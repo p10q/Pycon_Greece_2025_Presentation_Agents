@@ -1,0 +1,9 @@
+{
+    "Context": "Tell me anything you could find about memcpy",
+    "Tools": [
+        {
+            "Name": "memcpy",
+            "Description": "I am interested in any concept or news about memcpy"
+        }
+    ]
+}

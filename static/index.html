@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HN GitHub Agents - Tech Trend Tracker</title>
+    <link rel="stylesheet" href="/static/styles.css?v=5">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-chart-line"></i> Tech Trend Tracker</h1>
+                <p>AI-Powered insights from Hacker News, GitHub, and the web</p>
+                <div class="status-indicator">
+                    <span id="status-dot" class="status-dot"></span>
+                    <span id="status-text">Checking status...</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Layout -->
+        <div class="app-layout">
+            <!-- Left Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-inner">
+                    <h3>Previous Chats</h3>
+                    <div class="sidebar-placeholder">No history yet. Run an analysis or ask a question.</div>
+                </div>
+            </aside>
+
+            <!-- Main Interface -->
+            <main class="main-content">
+            <!-- Search Section -->
+            <section class="search-section">
+                <div class="search-container">
+                    <div class="search-input-group">
+                        <input 
+                            type="text" 
+                            id="searchInput" 
+                            placeholder="What trends do you want to explore? Try @filename to include data files"
+                            autocomplete="off"
+                        >
+                        <div class="search-options">
+                            <label class="option-toggle">
+                                <input type="checkbox" id="includeHN" checked>
+                                <span>Hacker News</span>
+                            </label>
+                            <label class="option-toggle">
+                                <input type="checkbox" id="includeBrave" checked>
+                                <span>Web Search</span>
+                            </label>
+                        </div>
+                            <div class="actions-row">
+                                <button id="searchBtn" class="search-btn">
+                                    <i class="fas fa-search"></i>
+                                    Analyze Trends
+                                </button>
+                                <button id="chatToggleBtn" class="chat-toggle-btn inline" title="Open general chat">
+                                    OR Ask anything else?
+                                </button>
+                            </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Suggestions -->
+            <section class="suggestions-section">
+                <h3><i class="fas fa-lightbulb"></i> Popular Searches</h3>
+                <div class="suggestion-tags">
+                    <button class="suggestion-tag" data-query="Python AI frameworks 2024">Python AI</button>
+                    <button class="suggestion-tag" data-query="JavaScript frameworks trends">JavaScript Trends</button>
+                    <button class="suggestion-tag" data-query="React vs Vue performance">React vs Vue</button>
+                    <button class="suggestion-tag" data-query="Docker development tools">Docker Tools</button>
+                    <button class="suggestion-tag" data-query="FastAPI vs Django comparison">FastAPI vs Django</button>
+                    <button class="suggestion-tag" data-query="GitHub Actions automation">GitHub Actions</button>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="resultsSection" style="display: none;">
+                <div class="results-header">
+                    <h2 id="resultsTitle">Analysis Results</h2>
+                    <div class="results-meta">
+                        <span id="resultsMeta">Found 0 trends</span>
+                        <button id="exportBtn" class="export-btn" title="Export Results">
+                            <i class="fas fa-download"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Trends Grid -->
+                <div class="trends-container">
+                    <div id="trendsGrid" class="trends-grid">
+                        <!-- Trends will be populated here -->
+                    </div>
+                </div>
+
+                <!-- AI Summary -->
+                <div class="summary-container" id="summaryContainer" style="display: none;">
+                    <h3><i class="fas fa-brain"></i> AI Analysis Summary</h3>
+                    <div id="summaryContent" class="summary-content">
+                        <!-- AI summary will be populated here -->
+                    </div>
+                </div>
+
+                <!-- Detected Repositories -->
+                <div class="repos-container" id="reposContainer" style="display: none;">
+                    <h3><i class="fab fa-github"></i> Related Repositories</h3>
+                    <div id="reposGrid" class="repos-grid">
+                        <!-- Repository cards will be populated here -->
+                    </div>
+                    <button id="analyzeReposBtn" class="analyze-repos-btn" style="display: none;">
+                        <i class="fas fa-chart-bar"></i>
+                        Analyze Repository Details
+                    </button>
+                </div>
+            </section>
+            </main>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <h3>Analyzing trends...</h3>
+                <p id="loadingText">Searching through Hacker News and the web for insights</p>
+            </div>
+        </div>
+
+        <!-- Error Modal -->
+        <div class="error-modal" id="errorModal" style="display: none;">
+            <div class="error-content">
+                <div class="error-header">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Something went wrong</h3>
+                    <button id="closeErrorBtn" class="close-btn">&times;</button>
+                </div>
+                <div id="errorMessage" class="error-message">
+                    An unexpected error occurred.
+                </div>
+                <button id="retryBtn" class="retry-btn">Try Again</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Marked.js for markdown parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/5.1.1/marked.min.js"></script>
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="/static/app.js?v=7"></script>
+</body>
+</html>

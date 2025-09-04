@@ -1,0 +1,79 @@
+{
+  "repository_analysis": [
+    {
+      "repository": "tiangolo/fastapi",
+      "metrics": {
+        "stars": 75000,
+        "forks": 6200,
+        "contributors": 450,
+        "issues_open": 120,
+        "issues_closed": 8500,
+        "pull_requests_merged": 2800,
+        "languages": {
+          "Python": 95.2,
+          "HTML": 2.8,
+          "CSS": 1.5,
+          "JavaScript": 0.5
+        },
+        "last_commit": "2024-01-14T15:30:00Z",
+        "creation_date": "2018-12-05T13:30:00Z"
+      },
+      "health_score": 9.2,
+      "community_engagement": "Very High",
+      "maintenance_status": "Active",
+      "growth_trend": "Positive"
+    },
+    {
+      "repository": "pydantic/pydantic-ai",
+      "metrics": {
+        "stars": 15000,
+        "forks": 800,
+        "contributors": 85,
+        "issues_open": 45,
+        "issues_closed": 320,
+        "pull_requests_merged": 180,
+        "languages": {
+          "Python": 98.5,
+          "Makefile": 1.0,
+          "Shell": 0.5
+        },
+        "last_commit": "2024-01-13T09:15:00Z",
+        "creation_date": "2023-08-20T11:00:00Z"
+      },
+      "health_score": 8.8,
+      "community_engagement": "High",
+      "maintenance_status": "Active",
+      "growth_trend": "Rapid Growth"
+    },
+    {
+      "repository": "microsoft/vscode",
+      "metrics": {
+        "stars": 160000,
+        "forks": 28000,
+        "contributors": 1800,
+        "issues_open": 5500,
+        "issues_closed": 125000,
+        "pull_requests_merged": 38000,
+        "languages": {
+          "TypeScript": 89.2,
+          "JavaScript": 5.8,
+          "CSS": 2.5,
+          "HTML": 1.5,
+          "Python": 1.0
+        },
+        "last_commit": "2024-01-14T18:45:00Z",
+        "creation_date": "2015-09-03T20:30:00Z"
+      },
+      "health_score": 9.7,
+      "community_engagement": "Extremely High",
+      "maintenance_status": "Very Active",
+      "growth_trend": "Steady Growth"
+    }
+  ],
+  "metadata": {
+    "analysis_date": "2024-01-15T10:00:00Z",
+    "total_repositories": 3,
+    "analysis_version": "2.1",
+    "data_sources": ["GitHub API", "Community Metrics", "Trend Analysis"]
+  }
+}
