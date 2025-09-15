@@ -35,28 +35,19 @@ class MemoryService:
     def _initialize(self) -> None:
         try:
             import chromadb  # type: ignore
-            from chromadb.utils.embedding_functions import (
-                OpenAIEmbeddingFunction,  # type: ignore
-            )
-
-            api_key = os.getenv("OPENAI_API_KEY")
-            if not api_key:
-                # No embeddings without an API key; keep fallback mode
-                return
-
+            
+            # For now, use default embeddings instead of OpenAI
+            # TODO: Implement AWS Bedrock embeddings
             persist_path = str(self.persist_dir) if self.persist_dir else None
             self._client = (
                 chromadb.PersistentClient(path=persist_path)
                 if persist_path
                 else chromadb.Client()
             )
-            embedding_fn = OpenAIEmbeddingFunction(
-                api_key=api_key,
-                model_name="text-embedding-3-small",
-            )
+            
+            # Use default sentence transformers embedding function
             self._collection = self._client.get_or_create_collection(
                 name="chat_memory",
-                embedding_function=embedding_fn,
                 metadata={"hnsw:space": "cosine"},
             )
             self._enabled = True

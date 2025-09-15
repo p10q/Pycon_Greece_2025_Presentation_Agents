@@ -293,7 +293,12 @@ class EntryAgent(BaseAgent):
             # Normalize MCP result shape
             stories_payload: list[dict[str, Any]] = []
             if isinstance(mcp_result, dict) and "result" in mcp_result:
-                stories_payload = mcp_result["result"] or []
+                result_data = mcp_result["result"]
+                # Check if result_data has a "stories" key
+                if isinstance(result_data, dict) and "stories" in result_data:
+                    stories_payload = result_data["stories"] or []
+                else:
+                    stories_payload = result_data if isinstance(result_data, list) else []
             elif isinstance(mcp_result, list):
                 stories_payload = mcp_result
             else:
@@ -326,7 +331,12 @@ class EntryAgent(BaseAgent):
                     )
                     top_payload: list[dict[str, Any]] = []
                     if isinstance(top_res, dict) and "result" in top_res:
-                        top_payload = top_res["result"] or []
+                        result_data = top_res["result"]
+                        # Check if result_data has a "stories" key
+                        if isinstance(result_data, dict) and "stories" in result_data:
+                            top_payload = result_data["stories"] or []
+                        else:
+                            top_payload = result_data if isinstance(result_data, list) else []
                     elif isinstance(top_res, list):
                         top_payload = top_res
                     for story in top_payload:
@@ -1675,7 +1685,12 @@ However, I can still provide a general answer: Let me give you some basic inform
             # Parse the MCP response
             web_results = []
             if isinstance(result, dict) and "result" in result:
-                brave_results = result["result"]
+                brave_data = result["result"]
+                # Check if brave_data has a "results" key
+                if isinstance(brave_data, dict) and "results" in brave_data:
+                    brave_results = brave_data["results"]
+                else:
+                    brave_results = brave_data if isinstance(brave_data, list) else []
             elif isinstance(result, list):
                 brave_results = result
             else:
@@ -1683,7 +1698,12 @@ However, I can still provide a general answer: Let me give you some basic inform
                     f"Unexpected Brave Search response format: {type(result)}",
                 )
                 return []
-
+            
+            # Ensure brave_results is a list before trying to iterate
+            if not isinstance(brave_results, list):
+                logger.warning(f"Brave results is not a list: {type(brave_results)}")
+                return []
+                
             for idx, item in enumerate(brave_results[:limit]):
                 # Calculate relevance score using Brave Search result data
                 score = self._calculate_brave_search_relevance(

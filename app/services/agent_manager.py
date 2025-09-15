@@ -363,11 +363,7 @@ class AgentManager:
                         "Monitor repository activity for emerging tools",
                         "Evaluate technology stack alignment with market trends",
                     ],
-                    "combined_insights": (
-                        analysis_result.data
-                        if hasattr(analysis_result, "data")
-                        else str(analysis_result)
-                    ),
+                    "combined_insights": str(analysis_result),
                 }
             return {
                 "correlation_analysis": {},

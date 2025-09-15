@@ -96,9 +96,7 @@ class GeneralAgent(BaseAgent):
                 f"Provide a helpful, accurate answer to: {message}\nBe concise but informative.",
             )
             return {
-                "response": (
-                    str(result.data) if hasattr(result, "data") else str(result)
-                ),
+                "response": str(result),
                 "timestamp": datetime.utcnow().isoformat(),
                 "message_type": "general",
             }

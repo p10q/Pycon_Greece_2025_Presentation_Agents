@@ -6,7 +6,7 @@ from datetime import datetime
 from typing import Any
 
 from pydantic_ai import Agent, RunContext
-from pydantic_ai.models.openai import OpenAIModel
+from pydantic_ai.models.bedrock import BedrockConverseModel
 
 from ..models.schemas import AgentMessage
 from ..utils import MCPClientManager, get_logger, settings
@@ -32,13 +32,9 @@ class BaseAgent(ABC):
         self.system_prompt = system_prompt
         self.mcp_manager: MCPClientManager | None = None
 
-        # Set OpenAI API key in environment if not already set
-        if not os.getenv("OPENAI_API_KEY") and settings.openai_api_key:
-            os.environ["OPENAI_API_KEY"] = settings.openai_api_key
-
-        # Initialize Pydantic-AI agent
+        # Initialize Pydantic-AI agent with Bedrock
         self.agent = Agent(
-            model=OpenAIModel("gpt-4o"),
+            model=BedrockConverseModel(model_name=settings.anthropic_model),
             system_prompt=self.system_prompt,
         )
 

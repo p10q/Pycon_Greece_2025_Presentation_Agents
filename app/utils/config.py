@@ -7,8 +7,14 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     """Application settings."""
 
-    # OpenAI Configuration
-    openai_api_key: str = Field(..., env="OPENAI_API_KEY")
+    # AWS Bedrock Configuration
+    aws_region: str = Field(default="us-west-2", env="AWS_REGION")
+    aws_access_key_id: str | None = Field(default=None, env="AWS_ACCESS_KEY_ID")
+    aws_secret_access_key: str | None = Field(default=None, env="AWS_SECRET_ACCESS_KEY")
+    aws_session_token: str | None = Field(default=None, env="AWS_SESSION_TOKEN")
+    
+    # Anthropic Model Configuration
+    anthropic_model: str = Field(default="anthropic.claude-3-5-sonnet-20241022-v2:0", env="ANTHROPIC_MODEL")
 
     # MCP Server URLs
     brave_search_mcp_url: str = Field(

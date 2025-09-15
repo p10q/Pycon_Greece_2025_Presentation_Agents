@@ -115,7 +115,7 @@ class SpecialistAgent(BaseAgent):
                     "repositories": repo_data,
                     "total_repos": len(repo_data),
                     "analysis_timestamp": datetime.utcnow().isoformat(),
-                    "insights": analysis_result.data,
+                    "insights": str(analysis_result),
                     "correlation_analysis": correlation_analysis,
                     "errors": analysis_errors,
                     "context": context,
@@ -171,13 +171,13 @@ class SpecialistAgent(BaseAgent):
             )
 
             if (
-                not hasattr(basic_details_result, "data")
-                or not basic_details_result.data
+                not basic_details_result
+                or str(basic_details_result).strip() == ""
             ):
                 logger.warning(f"No data returned for repository: {repo_name}")
                 return None
 
-            repo_data = basic_details_result.data
+            repo_data = str(basic_details_result)
 
             # Search for additional context if needed
             search_result = None
@@ -228,8 +228,8 @@ class SpecialistAgent(BaseAgent):
             }
 
             # Add search ranking if available
-            if search_result and hasattr(search_result, "data"):
-                search_data = search_result.data
+            if search_result and str(search_result).strip():
+                search_data = str(search_result)
                 if isinstance(search_data, dict) and "items" in search_data:
                     for i, item in enumerate(search_data["items"]):
                         if item.get("full_name") == repo_name:
